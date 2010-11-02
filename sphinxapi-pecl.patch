@@ -1,0 +1,17 @@
+--- sphinxsearch/action.php~	2010-10-29 10:26:51.000000000 +0300
++++ sphinxsearch/action.php	2010-11-02 10:49:40.942111150 +0200
+@@ -10,8 +10,13 @@
+ 
+ require_once(DOKU_INC.'inc/parser/parser.php');
+ 
++// No pecl class, try php version
++if (!class_exists('SphinxClient')) {
++	// loads from php include_path
++	require_once 'sphinxapi.php';
++}
++
+ require_once(DOKU_PLUGIN . 'action.php');
+-require_once(DOKU_PLUGIN . 'sphinxsearch/sphinxapi.php');
+ require_once(DOKU_PLUGIN . 'sphinxsearch/PageMapper.php');
+ require_once(DOKU_PLUGIN . 'sphinxsearch/SphinxSearch.php');
+ require_once(DOKU_PLUGIN . 'sphinxsearch/functions.php');

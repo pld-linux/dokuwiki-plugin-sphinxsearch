@@ -3,16 +3,16 @@ Summary:	DokuWiki sphinxsearch plugin
 Summary(pl.UTF-8):	Wtyczka sphinxsearch dla DokuWiki
 Name:		dokuwiki-plugin-%{plugin}
 Version:	0.3.3
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://launchpad.net/dokuwiki-sphinxsearch/0.3/%{version}/+download/sphinxsearch-%{version}.tar.gz
 # Source0-md5:	07448f7d6639431f44013708e577f45d
+Patch0:		sphinxapi-pecl.patch
 URL:		http://www.dokuwiki.org/plugin:sphinxsearch
 BuildRequires:	rpmbuild(macros) >= 1.520
-# for %%undos macro
-BuildRequires:	rpmbuild(macros) >= 1.553
 Requires:	dokuwiki >= 20091225
+Requires:	php(sphinx)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -25,13 +25,11 @@ DokuWiki Sphinx Search plugin replaces DokuWiki's built-in search
 functionality with the Sphinx Search Engine powered search which gives
 high-performance and more relevant search results.
 
-Features
-
+Features:
 - Google-style results (Results are shown in traditional Google-style:
   title, snippet and address (document path).)
 - Filtering by namespaces (Click on namespaces in the results to see
-  search only within chosen namespace, or simply use “ “search phrase
-  @ns personal:mike:travel”)
+  search only within chosen namespace
 - Document sections are indexed separately (This is very useful for
   those who have large pages in DokuWiki)
 
@@ -40,6 +38,10 @@ Features
 mv %{plugin}/* .
 rm %{plugin}/.hg_archival.txt
 rm %{plugin}/.htaccess
+%patch0 -p1
+
+# use system pkg
+rm sphinxapi.php
 
 version=$(awk '/date/{print $2}' plugin.info.txt)
 if [ "$(echo "$version" | tr -d -)" != %{version} ]; then
