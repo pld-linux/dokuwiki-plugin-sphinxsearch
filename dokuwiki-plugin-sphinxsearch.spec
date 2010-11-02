@@ -1,24 +1,36 @@
 %define		plugin		sphinxsearch
+%define		php_min_version 5.1.0
+%include	/usr/lib/rpm/macros.php
 Summary:	DokuWiki sphinxsearch plugin
 Summary(pl.UTF-8):	Wtyczka sphinxsearch dla DokuWiki
 Name:		dokuwiki-plugin-%{plugin}
 Version:	0.3.3
-Release:	0.2
+Release:	0.3
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://launchpad.net/dokuwiki-sphinxsearch/0.3/%{version}/+download/sphinxsearch-%{version}.tar.gz
 # Source0-md5:	07448f7d6639431f44013708e577f45d
 Patch0:		sphinxapi-pecl.patch
 URL:		http://www.dokuwiki.org/plugin:sphinxsearch
+BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.520
 Requires:	dokuwiki >= 20091225
 Requires:	php(sphinx)
+Requires:	php-common >= 4:%{php_min_version}
+Requires:	php-date
+Requires:	php-pcre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		dokuconf	/etc/webapps/dokuwiki
 %define		dokudir		/usr/share/dokuwiki
 %define		plugindir	%{dokudir}/lib/plugins/%{plugin}
+
+# no pear deps
+%define		_noautopear	pear
+
+# put it together for rpmbuild
+%define		_noautoreq	%{?_noautophp} %{?_noautopear}
 
 %description
 DokuWiki Sphinx Search plugin replaces DokuWiki's built-in search
