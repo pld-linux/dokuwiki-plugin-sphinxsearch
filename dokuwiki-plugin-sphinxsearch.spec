@@ -19,6 +19,8 @@ Requires:	php(sphinx)
 Requires:	php-common >= 4:%{php_min_version}
 Requires:	php-date
 Requires:	php-pcre
+Requires:	php-sqlite
+Requires:	sphinx
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
