@@ -15,11 +15,11 @@ URL:		http://www.dokuwiki.org/plugin:sphinxsearch
 BuildRequires:	rpm-php-pearprov >= 4.4.2-11
 BuildRequires:	rpmbuild(macros) >= 1.520
 Requires:	dokuwiki >= 20091225
+Requires:	php(core) >= %{php_min_version}
+Requires:	php(date)
+Requires:	php(pcre)
 Requires:	php(sphinx)
-Requires:	php-common >= 4:%{php_min_version}
-Requires:	php-date
-Requires:	php-pcre
-Requires:	php-sqlite
+Requires:	php(sqlite)
 Requires:	sphinx
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
