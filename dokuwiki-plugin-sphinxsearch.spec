@@ -1,6 +1,5 @@
 %define		plugin		sphinxsearch
 %define		php_min_version 5.1.0
-%include	/usr/lib/rpm/macros.php
 Summary:	DokuWiki sphinxsearch plugin
 Summary(pl.UTF-8):	Wtyczka sphinxsearch dla DokuWiki
 Name:		dokuwiki-plugin-%{plugin}
