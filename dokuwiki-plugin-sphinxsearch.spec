@@ -51,7 +51,7 @@ Features:
 mv %{plugin}/* .
 rm %{plugin}/.hg_archival.txt
 rm %{plugin}/.htaccess
-%patch0 -p1
+%patch -P0 -p1
 
 # use system pkg
 rm sphinxapi.php
